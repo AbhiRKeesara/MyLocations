@@ -38,7 +38,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
     var timer: NSTimer?
     
-    // useless commnent 
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
