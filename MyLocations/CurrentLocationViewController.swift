@@ -359,27 +359,22 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     // method to convert placemark object in to string to display
     
     func stringFromPlacemark(placemark: CLPlacemark) -> String {
+        
+        
+//        return "\(placemark.subThoroughfare) \(placemark.thoroughfare)\n " +
+//            "\(placemark.locality) \(placemark.administrativeArea)" +
+//        "\(placemark.postalCode)"
+        
+
         var line1 = ""
-        line1.appendContentsOf(placemark.subThoroughfare!)
-        
+        line1.addText(placemark.subThoroughfare, withSeparator: "")
+        line1.addText(placemark.thoroughfare, withSeparator: " ")
         var line2 = ""
-        line2.appendContentsOf(placemark.thoroughfare!)
-       
-        
-        var line3 = ""
-        line3.appendContentsOf(placemark.locality!)
-        
-        var line4 = ""
-        line4.appendContentsOf(placemark.administrativeArea!)
-        
-        var line5 = ""
-        line5.appendContentsOf(placemark.postalCode!)
-        
-        if line1.isEmpty {
-            return line3 + " " + line4 + line5 + "\n"
-        } else {
-            return line1 + " " + line2 + "\n" + line3  + " " + line4 + " " + line5
-        }
+        line2.addText(placemark.locality, withSeparator: "")
+        line2.addText(placemark.administrativeArea, withSeparator: " ")
+        line2.addText(placemark.postalCode, withSeparator: " ")
+        line1.addText(line2, withSeparator: "\n")
+        return line1
     }
     
     
@@ -393,12 +388,28 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             
             stopLocationManager()
             
-            lastLocationError = NSError( domain: "MyLoactionsErrorDomain", code: 1, userInfo: nil)
+            lastLocationError = NSError( domain: "MyLocationsErrorDomain", code: 1, userInfo: nil)
             
             updateLabels()
             configureGetButton()
         }
         
     }
-}
+    
+        // method for addText
+        func addText(text: String?, toLine line: String, withSeparator separator: String) -> String {
+            var result = line
+            if let text = text {
+                if !line.isEmpty {
+                    result += separator
+                }
+                result += text
+            }
+            
+            return result
+        }
+    }
+        
+        
+
 
