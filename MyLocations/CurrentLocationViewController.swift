@@ -10,8 +10,11 @@ import UIKit
 
 import CoreLocation
 
+import CoreData
+
 class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate {
 
+    var managedObjectContext: NSManagedObjectContext!
     
     // store users current location in this variable
     var location: CLLocation?
@@ -420,6 +423,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             
             controller.placemark = placemark
             controller.coordinate = location!.coordinate
+            controller.managedObjectContext = managedObjectContext
         
         }
         

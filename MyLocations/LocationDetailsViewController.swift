@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreLocation
+import CoreData
+
 
 
 private let dateFormatter: NSDateFormatter = {
@@ -20,20 +22,21 @@ private let dateFormatter: NSDateFormatter = {
 
 class LocationDetailsViewController: UITableViewController {
     
+    
+    var managedObjectContext: NSManagedObjectContext!
+    
     var placemark: CLPlacemark?
     var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     
     // to store description text
     var descriptionText = ""
-    
-    var categoryName = "No Category"
-    
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         descriptionTextView.text = descriptionText
-        categoryLabel.text = categoryName
+        
         
         latitudeLabel.text = String(format: "%.8f", coordinate.latitude)
         longitudeLabel.text = String(format: "%.8f", coordinate.longitude)
@@ -88,8 +91,12 @@ class LocationDetailsViewController: UITableViewController {
         print("Desciption '\(descriptionText) ")
         let hudView = HUDView.hudInView(navigationController!.view, animated: true)
         hudView.text = " Tagged"
-        hudView.backgroundColor = UIColor.blueColor()
-    
+      //  hudView.backgroundColor = UIColor.blueColor()
+        hudView.showAnimated(true)
+        
+        afterDelay(0.6) {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     @IBAction func cancel() {
@@ -129,27 +136,8 @@ class LocationDetailsViewController: UITableViewController {
     }
     
     
-    // method for segue from this screen to category picker view controller
+   
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "PickCategory" {
-            
-            let controller = segue.destinationViewController as! CategoryPickerViewController
-            controller.selectedCategoryName = categoryName
-            
-        }
-    }
-    
-    // action method performed when a cell is tapped in category picker view controller
-    
-    
-@IBAction func categoryPickerDidPickCategory(segue : UIStoryboardSegue) {
-        
-        let controller = segue.sourceViewController as! CategoryPickerViewController
-        
-        categoryName = controller.selectedCategoryName
-        categoryLabel.text = categoryName
-    }
+   
 }

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A8E5A341C95E68200C776F5 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E5A331C95E68200C776F5 /* Functions.swift */; };
+		0A8E5A371C95E98F00C776F5 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E5A351C95E98F00C776F5 /* DataModel.xcdatamodeld */; };
+		0A8E5A3B1C95EAF800C776F5 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E5A391C95EAF800C776F5 /* Location.swift */; };
 		0A8FEEB11C87C98F00C6A755 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FEEB01C87C98F00C6A755 /* AppDelegate.swift */; };
 		0A8FEEB31C87C98F00C6A755 /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FEEB21C87C98F00C6A755 /* CurrentLocationViewController.swift */; };
 		0A8FEEB51C87C98F00C6A755 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FEEB41C87C98F00C6A755 /* SecondViewController.swift */; };
@@ -17,10 +20,12 @@
 		0A9DE3681C8BC9700021F914 /* String+AddText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9DE3671C8BC9700021F914 /* String+AddText.swift */; };
 		0AC6A98B1C94DCAD0069DEEE /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC6A98A1C94DCAD0069DEEE /* HUDView.swift */; };
 		0AC6A98D1C94E4590069DEEE /* DescriptionTextDelegateMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC6A98C1C94E4590069DEEE /* DescriptionTextDelegateMethods.swift */; };
-		0AC6A98F1C94E6E30069DEEE /* CategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC6A98E1C94E6E30069DEEE /* CategoryPickerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A8E5A331C95E68200C776F5 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		0A8E5A361C95E98F00C776F5 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		0A8E5A391C95EAF800C776F5 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		0A8FEEAD1C87C98F00C6A755 /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8FEEB01C87C98F00C6A755 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A8FEEB21C87C98F00C6A755 /* CurrentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewController.swift; sourceTree = "<group>"; };
@@ -33,7 +38,6 @@
 		0A9DE3671C8BC9700021F914 /* String+AddText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AddText.swift"; sourceTree = "<group>"; };
 		0AC6A98A1C94DCAD0069DEEE /* HUDView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
 		0AC6A98C1C94E4590069DEEE /* DescriptionTextDelegateMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionTextDelegateMethods.swift; sourceTree = "<group>"; };
-		0AC6A98E1C94E6E30069DEEE /* CategoryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryPickerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,7 @@
 		0A8FEEAF1C87C98F00C6A755 /* MyLocations */ = {
 			isa = PBXGroup;
 			children = (
+				0A8E5A391C95EAF800C776F5 /* Location.swift */,
 				0A8FEEB01C87C98F00C6A755 /* AppDelegate.swift */,
 				0A8FEEB21C87C98F00C6A755 /* CurrentLocationViewController.swift */,
 				0A8FEEB41C87C98F00C6A755 /* SecondViewController.swift */,
@@ -77,7 +82,8 @@
 				0A9DE3671C8BC9700021F914 /* String+AddText.swift */,
 				0AC6A98A1C94DCAD0069DEEE /* HUDView.swift */,
 				0AC6A98C1C94E4590069DEEE /* DescriptionTextDelegateMethods.swift */,
-				0AC6A98E1C94E6E30069DEEE /* CategoryPickerViewController.swift */,
+				0A8E5A331C95E68200C776F5 /* Functions.swift */,
+				0A8E5A351C95E98F00C776F5 /* DataModel.xcdatamodeld */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -154,12 +160,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AC6A98F1C94E6E30069DEEE /* CategoryPickerViewController.swift in Sources */,
 				0AC6A98B1C94DCAD0069DEEE /* HUDView.swift in Sources */,
 				0AC6A98D1C94E4590069DEEE /* DescriptionTextDelegateMethods.swift in Sources */,
 				0A9DE3661C8BBD4D0021F914 /* LocationDetailsViewController.swift in Sources */,
+				0A8E5A341C95E68200C776F5 /* Functions.swift in Sources */,
+				0A8E5A3B1C95EAF800C776F5 /* Location.swift in Sources */,
 				0A8FEEB51C87C98F00C6A755 /* SecondViewController.swift in Sources */,
 				0A9DE3681C8BC9700021F914 /* String+AddText.swift in Sources */,
+				0A8E5A371C95E98F00C776F5 /* DataModel.xcdatamodeld in Sources */,
 				0A8FEEB11C87C98F00C6A755 /* AppDelegate.swift in Sources */,
 				0A8FEEB31C87C98F00C6A755 /* CurrentLocationViewController.swift in Sources */,
 			);
@@ -316,6 +324,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0A8E5A351C95E98F00C776F5 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0A8E5A361C95E98F00C776F5 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 0A8E5A361C95E98F00C776F5 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0A8FEEA51C87C98F00C6A755 /* Project object */;
 }
