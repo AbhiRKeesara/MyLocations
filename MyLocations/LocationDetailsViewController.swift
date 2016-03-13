@@ -9,17 +9,31 @@
 import UIKit
 import CoreLocation
 
+
+private let dateFormatter: NSDateFormatter = {
+    let formatter = NSDateFormatter()
+    formatter.dateStyle = .MediumStyle
+    formatter.timeStyle = .ShortStyle
+    return formatter
+    
+}()
+
 class LocationDetailsViewController: UITableViewController {
     
     var placemark: CLPlacemark?
     var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     
+    // to store description text
+    var descriptionText = ""
+    
+    var categoryName = "No Category"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        descriptionTextView.text = ""
-        categoryLabel.text = ""
+        descriptionTextView.text = descriptionText
+        categoryLabel.text = categoryName
         
         latitudeLabel.text = String(format: "%.8f", coordinate.latitude)
         longitudeLabel.text = String(format: "%.8f", coordinate.longitude)
@@ -32,7 +46,7 @@ class LocationDetailsViewController: UITableViewController {
             addresslabel.text = "No address Found"
         }
         
-//        dateLabel.text = formatDate(NSDate())
+        dateLabel.text = formatDate(NSDate())
         
     }
     
@@ -69,12 +83,73 @@ class LocationDetailsViewController: UITableViewController {
     
     @IBAction func done() {
         
-        dismissViewControllerAnimated(true, completion: nil)
+//        dismissViewControllerAnimated(true, completion: nil)
+    
+        print("Desciption '\(descriptionText) ")
+        let hudView = HUDView.hudInView(navigationController!.view, animated: true)
+        hudView.text = " Tagged"
+        hudView.backgroundColor = UIColor.blueColor()
+    
     }
     
     @IBAction func cancel() {
         
         dismissViewControllerAnimated(true, completion: nil)
         
+    }
+    
+    // method to format date from NSDate to string
+    func formatDate(date: NSDate) -> String{
+        
+        return dateFormatter.stringFromDate(date)
+        
+    }
+    
+    // MARK: - UITableViewDelegate
+    
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+    
+        if indexPath.section == 0 && indexPath.row == 0 {
+            
+            return 88
+        } else if indexPath.section == 2 && indexPath.row == 2 {
+            
+            
+            addresslabel.frame.size = CGSize(width: view.bounds.size.width - 115 , height: 10000)
+            
+            addresslabel.sizeToFit()
+            addresslabel.frame.origin.x = view.bounds.size.width - addresslabel.frame.size.width - 15
+            return addresslabel.frame.size.height + 20
+        } else {
+            
+            return 44
+        }
+    }
+    
+    
+    // method for segue from this screen to category picker view controller
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "PickCategory" {
+            
+            let controller = segue.destinationViewController as! CategoryPickerViewController
+            controller.selectedCategoryName = categoryName
+            
+        }
+    }
+    
+    // action method performed when a cell is tapped in category picker view controller
+    
+    
+@IBAction func categoryPickerDidPickCategory(segue : UIStoryboardSegue) {
+        
+        let controller = segue.sourceViewController as! CategoryPickerViewController
+        
+        categoryName = controller.selectedCategoryName
+        categoryLabel.text = categoryName
     }
 }
