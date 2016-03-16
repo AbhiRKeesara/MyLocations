@@ -22,6 +22,21 @@ private let dateFormatter: NSDateFormatter = {
 
 class LocationDetailsViewController: UITableViewController {
     
+    var locationToEdit: Location? {
+        
+        didSet {
+            
+            if let location = locationToEdit {
+                
+                descriptionText = location.locationDescription
+                date = location.date
+                coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+                
+                placemark = location.placemark
+            }
+        }
+        
+    }
     
     var managedObjectContext: NSManagedObjectContext!
     
@@ -36,6 +51,12 @@ class LocationDetailsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let _   = locationToEdit {
+            
+            title = "Edit Location"
+            
+        }
         
         descriptionTextView.text = descriptionText
         
@@ -90,9 +111,8 @@ class LocationDetailsViewController: UITableViewController {
     
     
     @IBOutlet weak var descriptionTextView: UITextView!
-    
-    @IBOutlet weak var categoryLabel: UILabel!
-    
+
+   
     @IBOutlet weak var latitudeLabel: UILabel!
     @IBOutlet weak var longitudeLabel: UILabel!
     @IBOutlet weak var addresslabel: UILabel!
@@ -101,16 +121,25 @@ class LocationDetailsViewController: UITableViewController {
     
     @IBAction func done() {
         
-        let location: Location
+        let  location: Location
         
         print("Desciption '\(descriptionText)' ")
         let hudView = HUDView.hudInView(navigationController!.view, animated: true)
+       
+        if let temp = locationToEdit {
+            
+            hudView.text = "Updated"
+            location = temp
+        } else {
         hudView.text = " Tagged"
+            
+         location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: managedObjectContext) as! Location
+        
+        }
         
         hudView.showAnimated(true)
         
-        
-    location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: managedObjectContext) as! Location
+    
         
         location.locationDescription = descriptionTextView.text
         location.latitude = coordinate.latitude
