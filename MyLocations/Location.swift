@@ -9,9 +9,11 @@
 import Foundation
 import CoreData
 import CoreLocation
+import MapKit
+
 
 @objc(Location)
-class Location: NSManagedObject {
+class Location: NSManagedObject, MKAnnotation {
     
 
 // Insert code here to add functionality to your managed object subclass
@@ -22,4 +24,23 @@ class Location: NSManagedObject {
     @NSManaged var locationDescription: String
     @NSManaged var date: NSDate
 
+    
+    var title: String? {
+        
+        if locationDescription.isEmpty {
+            
+            return ""
+        } else {
+            return locationDescription
+        }
+    }
+  
+    
+var coordinate: CLLocationCoordinate2D {
+        return CLLocationCoordinate2DMake(latitude, longitude)
+    }
+    
+
 }
+    
+
